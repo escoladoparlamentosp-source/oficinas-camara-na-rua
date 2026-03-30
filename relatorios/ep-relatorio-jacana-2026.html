@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Relatório — 1ª Oficina de Participação Cidadã — CEU Jaçanã</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+
+<style>
+:root {
+  --ep-verde:        #214373;   /* Azul institucional profundo */
+  --ep-verde-mid:    #2e5a96;
+  --ep-verde-light:  #6d809d;
+  --ep-ocre:         #bb9573;
+  --ep-ocre-light:   #d4b090;
+  --ep-creme:        #f4f6f9;
+  --ep-creme-dark:   #e8ecf2;
+  --ep-papel:        #fdfefd;
+  --ep-preto:        #12192a;
+  --ep-cinza:        #4a5a72;
+  --ep-cinza-light:  #bbcadf;
+  --ep-urgente:      #8B2020;
+  --ep-urgente-bg:   #FDF2F2;
+  --ep-alta:         #6b5010;
+  --ep-alta-bg:      #fdf6e8;
+  --ep-media:        #214373;
+  --ep-media-bg:     #edf1f8;
+
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'Source Serif 4', Georgia, serif;
+  --font-mono:    'DM Mono', 'Courier New', monospace;
+
+  --size-xs:   0.75rem;
+  --size-sm:   0.875rem;
+  --size-base: 1rem;
+  --size-md:   1.125rem;
+  --size-lg:   1.375rem;
+  --size-xl:   1.75rem;
+  --size-2xl:  2.25rem;
+  --size-3xl:  3rem;
+
+  --space-xs:  0.25rem;
+  --space-sm:  0.5rem;
+  --space-md:  1rem;
+  --space-lg:  1.5rem;
+  --space-xl:  2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 17px; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+body { background: var(--ep-creme); color: var(--ep-preto); font-family: var(--font-body); font-weight: 300; line-height: 1.72; }
+
+/* TOPBAR */
+.ep-topbar {
+  background: var(--ep-verde);
+  padding: 0 var(--space-xl);
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 2px solid var(--ep-ocre);
+}
+.ep-topbar__brand { display: flex; align-items: center; gap: var(--space-lg); }
+.ep-topbar__logo-ep { height: 30px; width: auto; display: block; }
+.ep-topbar__sep { width: 1px; height: 28px; background: rgba(255,255,255,0.25); }
+.ep-topbar__logo-camara { height: 24px; width: auto; display: block; opacity: 0.85; }
+.ep-topbar__meta { font-family: var(--font-mono); font-size: var(--size-xs); letter-spacing: 0.08em; color: rgba(255,255,255,0.68); }
+
+/* CAPA */
+.ep-cover {
+  background: var(--ep-verde);
+  min-height: 88vh;
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  position: relative;
+  overflow: hidden;
+}
+.ep-cover::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle at 68% 45%, rgba(196,135,58,0.1) 0%, transparent 55%),
+    repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(255,255,255,0.012) 40px, rgba(255,255,255,0.012) 41px);
+  pointer-events: none;
+}
+.ep-cover__content {
+  padding: var(--space-3xl) var(--space-xl) var(--space-2xl) var(--space-3xl);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  position: relative; z-index: 1;
+}
+.ep-cover__eyebrow {
+  font-family: var(--font-mono); font-size: var(--size-xs);
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ep-ocre);
+  margin-bottom: var(--space-xl);
+  display: flex; align-items: center; gap: var(--space-md);
+}
+.ep-cover__eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--ep-ocre); }
+.ep-cover__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4.5vw, 4rem);
+  font-weight: 700; line-height: 1.1;
+  color: #fff; max-width: 620px;
+  margin-bottom: var(--space-md);
+}
+.ep-cover__title em { font-style: italic; color: var(--ep-ocre-light); }
+.ep-cover__local {
+  font-family: var(--font-mono); font-size: var(--size-sm);
+  color: rgba(255,255,255,0.68); letter-spacing: 0.06em;
+  margin-bottom: var(--space-2xl);
+}
+.ep-cover__meta-row {
+  display: flex; gap: var(--space-2xl);
+  border-top: 1px solid rgba(255,255,255,0.12);
+  padding-top: var(--space-lg);
+}
+.ep-cover__meta-item { display: flex; flex-direction: column; gap: 4px; }
+.ep-cover__meta-label { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.58); }
+.ep-cover__meta-value { font-family: var(--font-mono); font-size: var(--size-sm); color: rgba(255,255,255,0.88); }
+.ep-cover__band {
+  background: var(--ep-verde);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+  border-left: 3px solid var(--ep-ocre);
+  gap: 2rem;
+  padding: 2rem 1rem;
+}
+.ep-cover__band::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(187,149,115,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+.ep-cover__band__logo-ep {
+  position: relative; z-index: 1;
+  width: 200px; height: auto; display: block;
+}
+.ep-cover__band__logo-camara {
+  position: relative; z-index: 1;
+  width: 160px; height: auto; display: block; opacity: 0.7;
+}
+
+/* SUMÁRIO EXECUTIVO — faixa especial antes do TOC */
+.ep-exec-summary {
+  background: var(--ep-creme-dark);
+  border-left: 5px solid var(--ep-verde);
+  padding: var(--space-2xl) var(--space-3xl);
+}
+.ep-exec-summary__label {
+  font-family: var(--font-mono); font-size: var(--size-xs);
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--ep-verde); margin-bottom: var(--space-lg);
+  display: flex; align-items: center; gap: var(--space-sm);
+}
+.ep-exec-summary__label::after { content: ''; flex: 1; height: 1px; background: var(--ep-cinza-light); }
+.ep-exec-summary__body { max-width: 780px; }
+.ep-exec-summary__body p {
+  font-size: var(--size-md); line-height: 1.75; color: var(--ep-preto);
+  font-weight: 300; margin-bottom: var(--space-md);
+}
+.ep-exec-summary__body p:last-child { margin-bottom: 0; }
+
+/* TOC */
+.ep-toc { background: var(--ep-verde); padding: var(--space-xl) var(--space-3xl); }
+.ep-toc__label {
+  font-family: var(--font-mono); font-size: var(--size-xs);
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--ep-ocre); margin-bottom: var(--space-lg);
+}
+.ep-toc__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--space-sm) var(--space-xl);
+  list-style: none;
+}
+.ep-toc__item { display: flex; align-items: baseline; gap: var(--space-sm); }
+.ep-toc__num { font-family: var(--font-mono); font-size: 0.65rem; color: var(--ep-ocre); flex-shrink: 0; }
+.ep-toc__item a {
+  font-family: var(--font-body); font-size: var(--size-sm); font-weight: 300;
+  color: rgba(255,255,255,0.8); text-decoration: none;
+  border-bottom: 1px solid transparent; transition: all 0.2s;
+}
+.ep-toc__item a:hover { color: var(--ep-ocre-light); border-color: var(--ep-ocre-light); }
+
+/* DOCUMENTO */
+.ep-document { max-width: 1100px; margin: 0 auto; padding: var(--space-3xl) var(--space-xl); }
+.ep-body { max-width: 700px; margin: 0 auto; }
+
+/* TIPOGRAFIA */
+.ep-body h1 {
+  font-family: var(--font-display); font-size: var(--size-2xl); font-weight: 700;
+  line-height: 1.2; color: var(--ep-preto);
+  margin-top: var(--space-3xl); margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-md);
+  border-bottom: 2px solid var(--ep-verde);
+  position: relative;
+}
+.ep-body h1::after {
+  content: attr(data-num);
+  font-family: var(--font-mono); font-size: var(--size-xs);
+  color: var(--ep-ocre); position: absolute; right: 0; bottom: var(--space-md);
+  letter-spacing: 0.15em;
+}
+.ep-body h2 {
+  font-family: var(--font-display); font-size: var(--size-lg); font-weight: 600;
+  color: var(--ep-verde); margin-top: var(--space-2xl); margin-bottom: var(--space-md);
+  font-style: italic;
+}
+.ep-body h3 {
+  font-family: var(--font-body); font-size: var(--size-md); font-weight: 600;
+  color: var(--ep-preto); margin-top: var(--space-xl); margin-bottom: var(--space-sm);
+  display: flex; align-items: center; gap: var(--space-sm);
+}
+.ep-body h3::before { content: '—'; color: var(--ep-ocre); font-weight: 300; }
+.ep-body p { font-size: var(--size-base); line-height: 1.78; color: var(--ep-preto); margin-bottom: var(--space-md); font-weight: 300; }
+.ep-body strong { font-weight: 600; color: var(--ep-preto); }
+.ep-body em { font-style: italic; }
+.ep-body a { color: var(--ep-verde-mid); text-decoration: none; border-bottom: 1px solid var(--ep-verde-light); transition: all 0.2s; }
+.ep-body a:hover { color: var(--ep-ocre); border-color: var(--ep-ocre); }
+.ep-body ul, .ep-body ol { padding-left: var(--space-xl); margin-bottom: var(--space-md); }
+.ep-body li { margin-bottom: var(--space-xs); font-size: var(--size-base); line-height: 1.7; }
+.ep-body ul li::marker { color: var(--ep-ocre); }
+.ep-body ol li::marker { font-family: var(--font-mono); font-size: var(--size-sm); color: var(--ep-verde); }
+.ep-body hr { border: none; height: 1px; background: linear-gradient(90deg, var(--ep-verde), var(--ep-ocre), transparent); margin: var(--space-2xl) 0; opacity: 0.35; }
+
+/* BLOCKQUOTE */
+.ep-body blockquote {
+  margin: var(--space-2xl) calc(-1 * var(--space-xl));
+  padding: var(--space-xl) var(--space-2xl);
+  background: var(--ep-verde);
+  position: relative; overflow: hidden;
+}
+.ep-body blockquote::before {
+  content: '\201C';
+  font-family: var(--font-display); font-size: 9rem; line-height: 1;
+  color: rgba(255,255,255,0.06);
+  position: absolute; top: -10px; left: 16px; pointer-events: none;
+}
+.ep-body blockquote::after {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+  width: 4px; background: var(--ep-ocre);
+}
+.ep-body blockquote p {
+  font-family: var(--font-display); font-size: var(--size-lg);
+  font-style: italic; line-height: 1.55; font-weight: 400;
+  color: rgba(255,255,255,0.95);
+  position: relative; z-index: 1; margin-bottom: 0;
+}
+.ep-body blockquote p:last-child em {
+  display: block; font-family: var(--font-mono); font-size: var(--size-xs);
+  font-style: normal; letter-spacing: 0.1em; text-transform: uppercase;
+  color: #F2C07A; margin-top: var(--space-md); padding-top: var(--space-md);
+  border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+/* TABELA */
+.ep-body table { width: 100%; border-collapse: collapse; margin: var(--space-xl) 0; font-size: var(--size-sm); }
+.ep-body thead { background: var(--ep-verde); color: #fff; }
+.ep-body th { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 400; padding: var(--space-sm) var(--space-md); text-align: left; }
+.ep-body td { padding: var(--space-sm) var(--space-md); border-bottom: 1px solid var(--ep-creme-dark); line-height: 1.5; }
+.ep-body tbody tr:nth-child(even) td { background: var(--ep-creme-dark); }
+
+/* COMPONENTES */
+.ep-ficha {
+  background: var(--ep-papel);
+  border: 1px solid var(--ep-creme-dark);
+  border-top: 3px solid var(--ep-verde);
+  margin: var(--space-xl) 0;
+}
+.ep-ficha__header {
+  font-family: var(--font-mono); font-size: 0.65rem;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(255,255,255,0.9);
+  background: var(--ep-verde);
+  padding: var(--space-sm) var(--space-md);
+}
+.ep-ficha__row {
+  display: grid; grid-template-columns: 200px 1fr;
+  border-bottom: 1px solid var(--ep-creme-dark);
+}
+.ep-ficha__row:last-child { border-bottom: none; }
+.ep-ficha__key {
+  font-family: var(--font-mono); font-size: 0.7rem;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ep-cinza); padding: var(--space-sm) var(--space-md);
+  background: var(--ep-creme-dark);
+  display: flex; align-items: center;
+}
+.ep-ficha__val {
+  font-size: var(--size-sm); padding: var(--space-sm) var(--space-md);
+  line-height: 1.5; color: var(--ep-preto);
+  display: flex; align-items: center;
+}
+
+.ep-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 1px; background: var(--ep-cinza-light);
+  border: 1px solid var(--ep-cinza-light);
+  margin: var(--space-xl) 0;
+}
+.ep-stat { background: var(--ep-papel); padding: var(--space-lg) var(--space-md); }
+.ep-stat__n { font-family: var(--font-display); font-size: var(--size-3xl); font-weight: 700; color: var(--ep-verde); line-height: 1; display: block; }
+.ep-stat__label { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ep-cinza); line-height: 1.3; margin-top: 4px; display: block; }
+
+.ep-callout {
+  background: var(--ep-creme-dark);
+  border-left: 4px solid var(--ep-ocre);
+  padding: var(--space-lg) var(--space-xl);
+  margin: var(--space-xl) 0;
+  font-size: var(--size-md); line-height: 1.65; color: var(--ep-preto);
+}
+.ep-callout--alerta {
+  background: var(--ep-urgente-bg);
+  border-color: var(--ep-urgente);
+}
+.ep-callout--alerta strong { color: var(--ep-urgente); }
+
+.ep-eixo {
+  background: var(--ep-papel);
+  border: 1px solid var(--ep-creme-dark);
+  border-left: 4px solid var(--ep-verde);
+  padding: var(--space-lg) var(--space-xl);
+  margin: var(--space-xl) 0;
+}
+.ep-eixo__num {
+  font-family: var(--font-mono); font-size: 0.65rem;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--ep-ocre); margin-bottom: var(--space-xs);
+}
+.ep-eixo__title {
+  font-family: var(--font-display); font-size: var(--size-lg);
+  font-weight: 700; color: var(--ep-verde);
+  margin-bottom: var(--space-sm);
+}
+.ep-eixo__body { font-size: var(--size-sm); line-height: 1.7; color: var(--ep-preto); margin-bottom: var(--space-md); }
+.ep-eixo__demands { list-style: none; padding: 0; margin-bottom: var(--space-md); }
+.ep-eixo__demands li {
+  font-size: var(--size-sm); font-style: italic;
+  padding: 4px 0 4px var(--space-md);
+  border-left: 2px solid var(--ep-ocre-light);
+  margin-bottom: var(--space-xs);
+  color: var(--ep-preto);
+}
+.ep-eixo__orgaos {
+  font-family: var(--font-mono); font-size: 0.68rem;
+  letter-spacing: 0.06em; color: var(--ep-cinza);
+  border-top: 1px solid var(--ep-creme-dark);
+  padding-top: var(--space-sm);
+}
+.ep-eixo__orgaos strong { color: var(--ep-verde); font-weight: 400; }
+
+.ep-prioridade {
+  margin: var(--space-xl) 0;
+  border: 1px solid var(--ep-cinza-light);
+}
+.ep-prioridade__header {
+  display: grid;
+  grid-template-columns: 44px 1fr 160px 100px;
+  background: var(--ep-verde); color: #fff;
+  font-family: var(--font-mono); font-size: 0.68rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: var(--space-sm) var(--space-md);
+  gap: var(--space-md);
+}
+.ep-prioridade__row {
+  display: grid;
+  grid-template-columns: 44px 1fr 160px 100px;
+  border-bottom: 1px solid var(--ep-creme-dark);
+  gap: var(--space-md);
+  align-items: center;
+}
+.ep-prioridade__row:nth-child(even) { background: var(--ep-creme-dark); }
+.ep-prioridade__row:last-child { border-bottom: none; }
+.ep-prioridade__cell { padding: var(--space-sm) var(--space-md); font-size: var(--size-sm); line-height: 1.4; }
+.ep-prioridade__n { font-family: var(--font-mono); font-weight: 400; color: var(--ep-cinza); }
+.ep-badge-urgencia {
+  display: inline-block;
+  font-family: var(--font-mono); font-size: 0.6rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 3px 8px; border-radius: 2px; font-weight: 400;
+}
+.ep-badge-urgencia--urgente { background: var(--ep-urgente-bg); color: var(--ep-urgente); border: 1px solid #E8BBBB; }
+.ep-badge-urgencia--alta { background: var(--ep-alta-bg); color: var(--ep-alta); border: 1px solid #E0D0A0; }
+.ep-badge-urgencia--media { background: var(--ep-media-bg); color: var(--ep-media); border: 1px solid #B0CEC8; }
+
+.ep-horizonte {
+  margin: var(--space-xl) 0;
+  display: flex; flex-direction: column; gap: var(--space-md);
+}
+.ep-horizonte__card {
+  background: var(--ep-papel);
+  border: 1px solid var(--ep-creme-dark);
+  border-left: 4px solid var(--ep-ocre);
+  padding: var(--space-lg) var(--space-xl);
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: auto auto;
+  gap: 0 var(--space-xl);
+  align-items: start;
+}
+.ep-horizonte__card--medio { border-left-color: var(--ep-verde-mid); }
+.ep-horizonte__card--longo { border-left-color: var(--ep-verde); }
+.ep-horizonte__label {
+  font-family: var(--font-mono); font-size: 0.65rem;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--ep-ocre); margin-bottom: var(--space-xs);
+  grid-column: 1; grid-row: 1;
+}
+.ep-horizonte__card--medio .ep-horizonte__label { color: var(--ep-verde-mid); }
+.ep-horizonte__card--longo .ep-horizonte__label { color: var(--ep-verde); }
+.ep-horizonte__title {
+  font-family: var(--font-display); font-size: var(--size-md); font-weight: 600;
+  color: var(--ep-preto);
+  grid-column: 1; grid-row: 2;
+  padding-right: var(--space-md);
+}
+.ep-horizonte__list {
+  list-style: none; padding: 0;
+  grid-column: 2; grid-row: 1 / 3;
+  border-left: 1px solid var(--ep-creme-dark);
+  padding-left: var(--space-xl);
+}
+.ep-horizonte__list li {
+  font-size: var(--size-sm); line-height: 1.65;
+  padding: var(--space-xs) 0 var(--space-xs) var(--space-md);
+  border-bottom: 1px solid var(--ep-creme-dark);
+  position: relative;
+}
+.ep-horizonte__list li:last-child { border-bottom: none; }
+.ep-horizonte__list li::before {
+  content: '→';
+  position: absolute; left: 0;
+  color: var(--ep-ocre); font-size: var(--size-xs);
+  top: var(--space-xs);
+}
+
+.ep-dois-col {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: var(--space-md); margin: var(--space-xl) 0;
+}
+.ep-col-card {
+  background: var(--ep-papel);
+  border: 1px solid var(--ep-creme-dark);
+  padding: var(--space-lg);
+}
+.ep-col-card__title {
+  font-family: var(--font-mono); font-size: 0.7rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  margin-bottom: var(--space-md); padding-bottom: var(--space-sm);
+  border-bottom: 2px solid var(--ep-verde);
+  color: var(--ep-verde);
+}
+.ep-col-card--risco .ep-col-card__title { border-color: var(--ep-urgente); color: var(--ep-urgente); }
+.ep-col-card__list { list-style: none; padding: 0; }
+.ep-col-card__list li {
+  font-size: var(--size-sm); line-height: 1.65;
+  padding: var(--space-xs) 0 var(--space-xs) var(--space-md);
+  border-bottom: 1px solid var(--ep-creme-dark);
+  position: relative;
+}
+.ep-col-card__list li::before { content: '✓'; position: absolute; left: 0; color: var(--ep-verde); font-size: var(--size-xs); }
+.ep-col-card--risco .ep-col-card__list li::before { content: '!'; color: var(--ep-urgente); }
+
+.ep-map {
+  margin: var(--space-xl) 0;
+  border: 1px solid var(--ep-cinza-light);
+  border-radius: 3px; overflow: hidden;
+}
+.ep-map iframe { width: 100%; height: 400px; border: none; display: block; }
+/* Mapa estático com imagem local */
+.ep-map--static iframe { display: none; }
+.ep-map__img {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-height: 480px;
+  object-fit: cover;
+  object-position: center;
+}
+.ep-map__caption,
+.ep-body .ep-map__caption {
+  background: var(--ep-verde); color: rgba(255,255,255,0.92) !important;
+  font-family: var(--font-mono); font-size: var(--size-xs);
+  letter-spacing: 0.1em; padding: var(--space-sm) var(--space-md);
+  margin: 0; display: block;
+}
+
+/* RODAPÉ */
+.ep-footer {
+  background: var(--ep-preto);
+  padding: var(--space-xl) var(--space-3xl);
+  display: grid; grid-template-columns: 1fr auto;
+  align-items: center; gap: var(--space-xl);
+  margin-top: var(--space-3xl);
+}
+.ep-footer__left { display: flex; flex-direction: column; gap: var(--space-md); }
+.ep-footer__logos { display: flex; align-items: center; gap: var(--space-xl); }
+.ep-footer__logo-ep { height: 36px; width: auto; display: block; }
+.ep-footer__sep { width: 1px; height: 32px; background: rgba(255,255,255,0.2); }
+.ep-footer__logo-camara { height: 28px; width: auto; display: block; opacity: 0.65; }
+.ep-footer__tagline { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
+.ep-footer__right { text-align: right; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.08em; line-height: 1.8; color: rgba(255,255,255,0.68); }
+
+/* ANIMAÇÕES */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.ep-cover__eyebrow  { animation: fadeUp 0.6s ease both 0.1s; }
+.ep-cover__title    { animation: fadeUp 0.7s ease both 0.25s; }
+.ep-cover__local    { animation: fadeUp 0.6s ease both 0.35s; }
+.ep-cover__meta-row { animation: fadeUp 0.6s ease both 0.5s; }
+
+@media (max-width: 800px) {
+  .ep-cover { grid-template-columns: 1fr; }
+  .ep-cover__band { display: none; }
+  .ep-dois-col { grid-template-columns: 1fr; }
+  .ep-prioridade__header, .ep-prioridade__row { grid-template-columns: 36px 1fr 100px; }
+  .ep-prioridade__header > *:nth-child(3), .ep-prioridade__cell:nth-child(3) { display: none; }
+  .ep-footer { grid-template-columns: 1fr; padding: var(--space-xl); }
+  .ep-footer__right { text-align: left; }
+  .ep-body blockquote { margin-left: 0; margin-right: 0; }
+}
+@media print {
+
+  /* ══════════════════════════════════════════════════════
+     ESTRATÉGIA: @page com margin:0 em TODAS as páginas.
+     O padding interno é controlado por CSS — não pelo Chrome.
+     Assim a capa sangra até a borda e o corpo tem margens
+     consistentes independente da configuração do navegador.
+     Instrução ao usuário: imprimir com margens = "Nenhuma"
+     e "Gráficos em segundo plano" ativado.
+  ══════════════════════════════════════════════════════ */
+
+  @page {
+    size: A4;
+    margin: 0;
+    @bottom-right { content: none; }
+    @bottom-left  { content: none; }
+  }
+
+  /* ── Reset geral ── */
+  * { animation: none !important; transition: none !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html { font-size: 11pt; }
+  body { margin: 0; padding: 0; }
+
+  /* ── Topbar de tela: ocultar ── */
+  .ep-topbar { display: none !important; }
+
+  /* ══════════════════════════════════════════
+     CAPA — página 1, sangra até a borda total
+  ══════════════════════════════════════════ */
+  .ep-cover {
+    min-height: 0;
+    height: 297mm;
+    width: 210mm;
+    page-break-after: always;
+    break-after: page;
+    grid-template-columns: 1fr 190px;
+    background: #214373 !important;
+  }
+  .ep-cover::before { display: none !important; }
+  .ep-cover__content { padding: 30mm 12mm 16mm 18mm; }
+  .ep-cover__eyebrow  { font-size: 7pt; margin-bottom: 10mm; }
+  .ep-cover__title    { font-size: 26pt; margin-bottom: 4mm; max-width: 100%; }
+  .ep-cover__local    { font-size: 8pt; margin-bottom: 12mm; }
+  .ep-cover__meta-row { padding-top: 5mm; gap: 8mm; flex-wrap: wrap; }
+  .ep-cover__meta-label { font-size: 6pt; }
+  .ep-cover__meta-value { font-size: 8pt; }
+  .ep-cover__band {
+    background: #214373 !important;
+    border-left: 3px solid #bb9573 !important;
+    padding: 20mm 8mm;
+    gap: 12mm;
+  }
+  .ep-cover__band::before { display: none !important; }
+  .ep-cover__band__logo-ep     { width: 115px; }
+  .ep-cover__band__logo-camara { width: 90px; }
+
+  /* ══════════════════════════════════════════════════════════
+     WRAPPER DE PADDING: todas as páginas após a capa precisam
+     de margens laterais. Como @page margin=0, adicionamos
+     padding nos próprios blocos de conteúdo.
+  ══════════════════════════════════════════════════════════ */
+
+  /* Padding horizontal padrão para todo conteúdo pós-capa */
+  .ep-exec-summary,
+  .ep-toc,
+  .ep-document {
+    padding-left: 20mm;
+    padding-right: 20mm;
+  }
+
+  /* Sumário executivo */
+  .ep-exec-summary { padding-top: 10mm; padding-bottom: 8mm; break-after: avoid; }
+  .ep-exec-summary__label { font-size: 7pt; margin-bottom: 4mm; }
+  .ep-exec-summary__label::after { display: none; }
+  .ep-exec-summary__body p { font-size: 9.5pt; line-height: 1.55; margin-bottom: 3mm; }
+
+  /* TOC */
+  .ep-toc { padding-top: 8mm; padding-bottom: 8mm; break-after: page; }
+  .ep-toc__label { font-size: 7pt; margin-bottom: 4mm; }
+  .ep-toc__item a { font-size: 8.5pt; }
+  .ep-toc__num { font-size: 7pt; }
+
+  /* Corpo */
+  .ep-document { padding-top: 0; padding-bottom: 0; max-width: 100%; }
+  .ep-body { max-width: 100%; }
+
+  /* Numeração de página — injetada via CSS counter no rodapé do documento */
+  .ep-footer::after {
+    content: none; /* rodapé já existe como elemento HTML */
+  }
+
+  /* ── Tipografia ── */
+  .ep-body h1 {
+    font-size: 16pt; margin-top: 0; padding-top: 10mm;
+    margin-bottom: 4mm; break-before: page; break-after: avoid;
+  }
+  .ep-body h1:first-child { break-before: avoid; padding-top: 10mm; }
+  .ep-body h2 { font-size: 12pt; margin-top: 6mm; margin-bottom: 2mm; break-after: avoid; }
+  .ep-body h3 { font-size: 10.5pt; margin-top: 4mm; margin-bottom: 2mm; break-after: avoid; }
+  .ep-body h4 { font-size: 8pt; margin-top: 3mm; }
+  .ep-body p  { font-size: 9.5pt; line-height: 1.55; margin-bottom: 2.5mm; }
+  .ep-body li { font-size: 9.5pt; line-height: 1.5; }
+  .ep-body hr { margin: 5mm 0; }
+
+  /* Blockquote: zerar margem negativa de tela */
+  .ep-body blockquote { margin: 5mm 0 !important; padding: 5mm 8mm; break-inside: avoid; }
+  .ep-body blockquote p { font-size: 11pt; line-height: 1.4; }
+  .ep-body blockquote::before { font-size: 5rem; }
+
+  /* Tabelas */
+  .ep-body th { font-size: 7pt; padding: 2mm 3mm; }
+  .ep-body td { font-size: 8.5pt; padding: 2mm 3mm; line-height: 1.4; }
+  .ep-body table { margin: 4mm 0; }
+
+  /* Ficha */
+  .ep-ficha { margin: 4mm 0; break-inside: avoid; }
+  .ep-ficha__header { font-size: 7pt; padding: 2mm 3mm; }
+  .ep-ficha__key { font-size: 7.5pt; padding: 2mm 3mm; }
+  .ep-ficha__val { font-size: 8.5pt; padding: 2mm 3mm; }
+  .ep-ficha__row { grid-template-columns: 140px 1fr; }
+
+  /* Stats */
+  .ep-stats { margin: 4mm 0; break-inside: avoid; }
+  .ep-stat { padding: 3mm 4mm; }
+  .ep-stat__n     { font-size: 20pt; }
+  .ep-stat__label { font-size: 6.5pt; }
+
+  /* Callout */
+  .ep-callout { padding: 3mm 5mm; margin: 4mm 0; font-size: 9pt; line-height: 1.5; break-inside: avoid; }
+
+  /* Eixos */
+  .ep-eixo { padding: 4mm 6mm; margin: 4mm 0; break-inside: avoid; }
+  .ep-eixo__num   { font-size: 6.5pt; }
+  .ep-eixo__title { font-size: 11pt; margin-bottom: 2mm; }
+  .ep-eixo__body  { font-size: 8.5pt; line-height: 1.45; margin-bottom: 2mm; }
+  .ep-eixo__demands li { font-size: 8.5pt; padding: 1mm 0 1mm 4mm; }
+  .ep-eixo__orgaos { font-size: 7pt; padding-top: 2mm; }
+
+  /* Tabela de prioridade */
+  .ep-prioridade { margin: 4mm 0; break-inside: avoid; }
+  .ep-prioridade__header { font-size: 7pt; padding: 2mm 3mm; }
+  .ep-prioridade__cell   { font-size: 8.5pt; padding: 2mm 3mm; line-height: 1.4; }
+  .ep-prioridade__header,
+  .ep-prioridade__row { grid-template-columns: 28px 1fr 130px 80px; }
+
+  /* Horizontes */
+  .ep-horizonte { margin: 4mm 0; gap: 3mm; }
+  .ep-horizonte__card {
+    padding: 4mm 6mm; grid-template-columns: 110px 1fr;
+    gap: 0 8mm; break-inside: avoid;
+  }
+  .ep-horizonte__label { font-size: 6.5pt; }
+  .ep-horizonte__title { font-size: 10pt; }
+  .ep-horizonte__list li { font-size: 8.5pt; padding: 1mm 0 1mm 4mm; line-height: 1.4; }
+
+  /* Dois colunas */
+  .ep-dois-col { gap: 4mm; margin: 4mm 0; break-inside: avoid; }
+  .ep-col-card { padding: 4mm 5mm; }
+  .ep-col-card__title { font-size: 7pt; margin-bottom: 2mm; padding-bottom: 1mm; }
+  .ep-col-card__list li { font-size: 8.5pt; line-height: 1.45; }
+
+  /* Mapa estático */
+  .ep-map { display: block !important; break-inside: avoid; margin: 4mm 0; }
+  .ep-map__img { width: 100%; max-height: 115mm; object-fit: cover; object-position: center; display: block; }
+
+  /* Rodapé do documento */
+  .ep-footer {
+    margin-top: 6mm;
+    padding: 5mm 20mm 8mm 20mm;
+    border-top: 1px solid #bbcadf;
+    background: #12192a !important;
+    grid-template-columns: 1fr auto;
+  }
+  .ep-footer__logos { gap: 6mm; }
+  .ep-footer__logo-ep     { height: 20px; }
+  .ep-footer__logo-camara { height: 16px; }
+  .ep-footer__sep { height: 16px; }
+  .ep-footer__tagline { font-size: 6.5pt; color: rgba(255,255,255,0.58) !important; }
+  .ep-footer__right { font-size: 7pt; color: rgba(255,255,255,0.68) !important; }
+
+  /* Break-inside: avoid nos componentes principais */
+  .ep-eixo, .ep-prioridade, .ep-horizonte__card,
+  .ep-dois-col, .ep-stats, .ep-ficha, .ep-callout,
+  .ep-body blockquote { break-inside: avoid; }
+  .ep-body h2 + p, .ep-body h3 + p { break-before: avoid; }
+}
+</style>
+</head>
+<body>
+
+<nav class="ep-topbar">
+  <div class="ep-topbar__brand">
+    <img class="ep-topbar__logo-ep" src="logo_ep_branco.png" alt="Escola do Parlamento">
+    <div class="ep-topbar__sep"></div>
+    <img class="ep-topbar__logo-camara" src="logo_camara_branco.png" alt="Câmara Municipal de São Paulo">
+  </div>
+  <span class="ep-topbar__meta">EP-CNR-2026-001 &nbsp;·&nbsp; 21 de março de 2026</span>
+</nav>
+
+<header class="ep-cover">
+  <div class="ep-cover__content">
+    <p class="ep-cover__eyebrow">Relatório Executivo de Atividade</p>
+    <h1 class="ep-cover__title">1ª Oficina de <em>Participação Cidadã</em></h1>
+    <p class="ep-cover__local">Projeto Câmara na Rua &nbsp;·&nbsp; CEU Jaçanã, Jardim Guapira &nbsp;·&nbsp; São Paulo, 21 mar. 2026</p>
+    <div class="ep-cover__meta-row">
+      <div class="ep-cover__meta-item">
+        <span class="ep-cover__meta-label">Data</span>
+        <span class="ep-cover__meta-value">21 de março de 2026</span>
+      </div>
+      <div class="ep-cover__meta-item">
+        <span class="ep-cover__meta-label">Participantes</span>
+        <span class="ep-cover__meta-value">45 de 68 inscritos</span>
+      </div>
+      <div class="ep-cover__meta-item">
+        <span class="ep-cover__meta-label">Facilitadora</span>
+        <span class="ep-cover__meta-value">Fernanda Luchiari de Lima</span>
+      </div>
+      <div class="ep-cover__meta-item">
+        <span class="ep-cover__meta-label">Documento</span>
+        <span class="ep-cover__meta-value">EP-CNR-2026-001</span>
+      </div>
+    </div>
+  </div>
+  <div class="ep-cover__band">
+    <img class="ep-cover__band__logo-ep" src="marca_escola_do_parlamento_com_letra_branca.png" alt="Escola do Parlamento">
+    <img class="ep-cover__band__logo-camara" src="logo_camara_branco.png" alt="Câmara Municipal de São Paulo">
+  </div>
+</header>
+
+<!-- SUMÁRIO EXECUTIVO -->
+<section class="ep-exec-summary">
+  <p class="ep-exec-summary__label">Sumário Executivo</p>
+  <div class="ep-exec-summary__body">
+    <p>A primeira Oficina de Participação Cidadã do projeto Câmara na Rua foi realizada em 21 de março de 2026 no CEU Jaçanã, equipamento público de referência comunitária no distrito do Jaçanã, Zona Norte de São Paulo. A atividade, com três horas de duração e facilitada por profissional credenciada pela Escola do Parlamento, reuniu <strong>45 participantes</strong> — de um total de 68 inscritos — em exercício de mapeamento e priorização coletiva de demandas territoriais.</p>
+    <p>O público foi composto predominantemente por mulheres acima de 40 anos, com alto grau de escolaridade e forte vinculação ao terceiro setor e ao associativismo local. Embora esse perfil ateste a capacidade de mobilização do programa junto a lideranças organizadas, representa também uma limitação: jovens, trabalhadores informais e populações em situação de maior vulnerabilidade permaneceram sub-representados.</p>
+    <p>As demandas levantadas foram organizadas em <strong>seis eixos temáticos</strong>. Os dois de maior urgência percebida são a drenagem e contenção de enchentes do Rio Cabuçu de Cima — com relatos de perdas materiais recorrentes — e a ampliação da rede de atenção básica à saúde, agravada pela sobrecarga da UPA Jaçanã, que realizou mais de 226 mil atendimentos em 2025.</p>
+    <p>Para fins de atuação parlamentar, as demandas foram traduzidas em três horizontes: ações de curto prazo voltadas à fiscalização e manutenção; medidas de médio prazo centradas na ampliação de serviços; e pautas estruturantes de planejamento territorial de longo prazo, incluindo a integração das demandas ao Plano Plurianual e a revisão do Plano Diretor para proteção de áreas de várzea e encosta.</p>
+  </div>
+</section>
+
+<!-- TOC -->
+<nav class="ep-toc">
+  <p class="ep-toc__label">Sumário</p>
+  <ol class="ep-toc__grid">
+    <li class="ep-toc__item"><span class="ep-toc__num">01</span><a href="#s1">Apresentação da Atividade</a></li>
+    <li class="ep-toc__item"><span class="ep-toc__num">02</span><a href="#s2">Caracterização do Território</a></li>
+    <li class="ep-toc__item"><span class="ep-toc__num">03</span><a href="#s3">Localização — CEU Jaçanã</a></li>
+    <li class="ep-toc__item"><span class="ep-toc__num">04</span><a href="#s4">Perfil dos Participantes</a></li>
+    <li class="ep-toc__item"><span class="ep-toc__num">05</span><a href="#s5">Demandas Levantadas</a></li>
+    <li class="ep-toc__item"><span class="ep-toc__num">06</span><a href="#s6">Síntese e Priorização</a></li>
+    <li class="ep-toc__item"><span class="ep-toc__num">07</span><a href="#s7">Síntese para Atuação Parlamentar</a></li>
+    <li class="ep-toc__item"><span class="ep-toc__num">08</span><a href="#s8">Análise da Dinâmica Participativa</a></li>
+    <li class="ep-toc__item"><span class="ep-toc__num">09</span><a href="#s9">Considerações Finais</a></li>
+  </ol>
+</nav>
+
+<main class="ep-document">
+<div class="ep-body">
+
+<!-- 1. APRESENTAÇÃO -->
+<h1 id="s1" data-num="01">Apresentação da Atividade</h1>
+
+<p>Este relatório trata da primeira edição das Oficinas de Participação Cidadã do projeto <strong>Câmara na Rua</strong>, iniciativa da Câmara Municipal de São Paulo voltada à escuta qualificada da população e à organização de demandas territoriais junto ao Poder Legislativo municipal.</p>
+
+<p>A atividade foi realizada no dia <strong>21 de março de 2026, às 9h00</strong>, sob facilitação de Fernanda Luchiari de Lima, facilitadora contratada pela Escola do Parlamento por meio de Edital de Credenciamento. O local, CEU Jaçanã (R. Francisca Espósito Tonetti, 105 — Jardim Guapira), reúne escola, quadras, biblioteca e espaços de convivência, sendo referência de centralidade comunitária no território. Situa-se em área de confluência entre os bairros do Jaçanã e do Jardim Guapira, próxima à Av. Guapira, eixo estruturante da subprefeitura.</p>
+
+<div class="ep-ficha">
+  <div class="ep-ficha__header">Identificação da Atividade</div>
+  <div class="ep-ficha__row">
+    <span class="ep-ficha__key">Projeto</span>
+    <span class="ep-ficha__val">Câmara na Rua — Escola do Parlamento / CMSP</span>
+  </div>
+  <div class="ep-ficha__row">
+    <span class="ep-ficha__key">Atividade</span>
+    <span class="ep-ficha__val">Oficina de Participação Cidadã</span>
+  </div>
+  <div class="ep-ficha__row">
+    <span class="ep-ficha__key">Local</span>
+    <span class="ep-ficha__val">CEU Jaçanã — R. Francisca Espósito Tonetti, 105, Jardim Guapira, São Paulo/SP</span>
+  </div>
+  <div class="ep-ficha__row">
+    <span class="ep-ficha__key">Data e horário</span>
+    <span class="ep-ficha__val">21 de março de 2026, das 9h00 às 12h00</span>
+  </div>
+  <div class="ep-ficha__row">
+    <span class="ep-ficha__key">Carga horária</span>
+    <span class="ep-ficha__val">3 horas de atividade presencial participativa</span>
+  </div>
+  <div class="ep-ficha__row">
+    <span class="ep-ficha__key">Facilitadora</span>
+    <span class="ep-ficha__val">Fernanda Luchiari de Lima, com apoio de equipe da Escola do Parlamento</span>
+  </div>
+  <div class="ep-ficha__row">
+    <span class="ep-ficha__key">Participantes</span>
+    <span class="ep-ficha__val">45 pessoas (de 68 inscritos)</span>
+  </div>
+  <div class="ep-ficha__row">
+    <span class="ep-ficha__key">Público</span>
+    <span class="ep-ficha__val">Cidadãos, lideranças comunitárias e representantes da sociedade civil do Jaçanã e entorno</span>
+  </div>
+</div>
+
+<hr>
+
+<!-- 2. TERRITÓRIO -->
+<h1 id="s2" data-num="02">Caracterização do Território</h1>
+
+<h2>2.1 Contexto geral: Subprefeitura Jaçanã/Tremembé</h2>
+
+<p>O CEU Jaçanã está inserido na Subprefeitura Jaçanã/Tremembé, que abrange dois distritos municipais — Jaçanã e Tremembé — com área total de <strong>64,1 km²</strong> e população de aproximadamente <strong>291 mil habitantes</strong> (Censo IBGE 2022). O distrito do Jaçanã concentra cerca de 96 mil pessoas em apenas 7,8 km², resultando em alta densidade urbana. O Tremembé, com 56 km² e 225 mil habitantes, é o quarto maior distrito do município em extensão, com expressiva presença de áreas verdes, incluindo parte do Parque Estadual da Cantareira.</p>
+
+<p>Historicamente, a região desenvolveu-se ao longo de linhas de trem e em direção à Serra da Cantareira, apresentando processo de urbanização marcado por desigualdades socioespaciais e ocupação de áreas ambientalmente sensíveis, especialmente nas margens do <strong>Rio Cabuçu de Cima</strong>, principal vetor de enchentes no território.</p>
+
+<h2>2.2 Equipamentos públicos no entorno do CEU Jaçanã</h2>
+
+<p>O território dispõe de alguns equipamentos públicos relevantes, ainda que a percepção comunitária aponte gaps significativos de cobertura, especialmente na atenção básica à saúde e na assistência social:</p>
+
+<table>
+  <thead>
+    <tr><th>Tipo</th><th>Equipamento</th><th>Endereço / Referência</th><th>Observação</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Educação</td><td>CEU Jaçanã <em>(local da oficina)</em></td><td>R. Francisca Espósito Tonetti, 105</td><td>Escola, quadras, biblioteca, convivência</td></tr>
+    <tr><td>Saúde</td><td>UBS Jaçanã — Dr. Sebastião Gabriel Sayago de Laet</td><td>R. São Geraldino, 222</td><td>Atend. 7h–19h / seg–sex</td></tr>
+    <tr><td>Saúde</td><td>UPA Jaçanã (24h)</td><td>R. Ester Elisa, 229</td><td>+18.850 atend./mês em 2025</td></tr>
+    <tr><td>Assist. Social</td><td>CRAS Jaçanã</td><td>Av. Guapira, 2145 — V. Constança</td><td>Atend. 8h–18h / seg–sex</td></tr>
+    <tr><td>Educação</td><td>EE Prof.ª Eurico Figueiredo</td><td>R. Ministro Fonseca Filho, 75</td><td>Escola estadual de ensino regular</td></tr>
+    <tr><td>Educação</td><td>EE Júlio Pestana</td><td>Av. Guapira, 2862</td><td>Escola estadual — Av. Guapira</td></tr>
+    <tr><td>Meio Ambiente</td><td>Rio Cabuçu de Cima</td><td>Bacia hidrográfica — Jaçanã/Tremembé</td><td>Principal vetor de enchentes</td></tr>
+  </tbody>
+</table>
+
+<div class="ep-callout">
+  <strong>Nota:</strong> A UPA Jaçanã é uma das mais demandadas do município, realizando mais de <strong>226 mil atendimentos somente em 2025</strong>, o que evidencia a pressão sobre a rede de saúde na região.
+</div>
+
+<hr>
+
+<!-- 3. LOCALIZAÇÃO -->
+<h1 id="s3" data-num="03">Localização — CEU Jaçanã e Entorno</h1>
+
+<p>O mapa a seguir apresenta a localização do CEU Jaçanã e dos principais equipamentos públicos no raio de influência da atividade.</p>
+
+<div class="ep-map ep-map--static">
+  <img src="mapa.jpeg" alt="Mapa de localização — CEU Jaçanã e entorno" class="ep-map__img">
+  <div style="background:#214373;color:rgba(255,255,255,0.92);font-family:'DM Mono',monospace;font-size:0.75rem;letter-spacing:0.1em;padding:0.5rem 1rem;margin:0;display:block;">
+    CEU Jaçanã — R. Francisca Espósito Tonetti, 105 — Jardim Guapira, São Paulo/SP &nbsp;·&nbsp; Raio de 500 metros
+  </div>
+</div>
+
+<hr>
+
+<!-- 4. PERFIL -->
+<h1 id="s4" data-num="04">Perfil dos Participantes</h1>
+
+<div class="ep-stats">
+  <div class="ep-stat"><span class="ep-stat__n">45</span><span class="ep-stat__label">Participantes presentes</span></div>
+  <div class="ep-stat"><span class="ep-stat__n">71%</span><span class="ep-stat__label">Mulheres</span></div>
+  <div class="ep-stat"><span class="ep-stat__n">78%</span><span class="ep-stat__label">Com 40 anos ou mais</span></div>
+  <div class="ep-stat"><span class="ep-stat__n">61%</span><span class="ep-stat__label">Superior completo ou pós-grad.</span></div>
+  <div class="ep-stat"><span class="ep-stat__n">35%</span><span class="ep-stat__label">Vinculados ao terceiro setor</span></div>
+</div>
+
+<p>O público da primeira oficina foi composto predominantemente por mulheres com idade superior a 40 anos, com elevado grau de escolaridade e forte vinculação ao terceiro setor e ao associativismo local.</p>
+
+<h2>4.1 Insights participativos</h2>
+
+<p><strong>a. Público predominantemente feminino, maduro e engajado civicamente.</strong> O evento atraiu um perfil muito específico: mulheres com mais de 40 anos, alta escolaridade, atuantes no Terceiro Setor, motivadas pela cidadania. Este é um nicho fiel, mas sinaliza baixa diversidade de perfis — jovens, homens e trabalhadores do setor privado são sub-representados.</p>
+
+<p><strong>b. O Terceiro Setor é o coração do público.</strong> Com 35% dos participantes, organizações da sociedade civil são a principal base de engajamento. A presença de entidades como MNLM, Instituto Novos Horizontes e Movimento Salve Periférico indica que o evento chega a redes de ativismo comunitário e movimentos de base — um ativo estratégico para a CMSP.</p>
+
+<p><strong>c. Alto nível educacional — possível viés de seleção.</strong> Mais de 61% tem ensino superior completo ou pós-graduação. Isso pode indicar barreira de acesso ao programa para populações com menor escolaridade, mesmo sendo gratuito. A Região Norte de SP tem perfil socioeconômico mais diverso do que o público inscrito sugere.</p>
+
+<div class="ep-callout ep-callout--alerta">
+  <strong>Limitação identificada:</strong> Grupos mais vulneráveis — jovens, trabalhadores informais, imigrantes, pessoas em situação de rua — tendem a ficar sub-representados em processos participativos dessa natureza. Ampliar a diversidade do público é condição para que as demandas levantadas reflitam efetivamente as necessidades do território como um todo.
+</div>
+
+<hr>
+
+<!-- 5. DEMANDAS -->
+<h1 id="s5" data-num="05">Demandas Levantadas pelos Participantes</h1>
+
+<p>As demandas foram organizadas coletivamente durante a oficina em seis eixos temáticos. A síntese a seguir é baseada nas anotações produzidas pelo grupo, com indicação dos órgãos municipais potencialmente responsáveis.</p>
+
+<div class="ep-eixo">
+  <p class="ep-eixo__num">Eixo 01 — Urgente</p>
+  <p class="ep-eixo__title">Infraestrutura Urbana, Drenagem e Enchentes</p>
+  <p class="ep-eixo__body">Demanda de maior recorrência e urgência percebida. O Rio Cabuçu de Cima é o principal vetor de risco, com registros de transbordamento em períodos de chuva intensa. Participantes relataram perdas materiais recorrentes, dificuldade de acesso a ruas e danos a imóveis.</p>
+  <ul class="ep-eixo__demands">
+    <li>Obras de contenção e canalização do Rio Cabuçu de Cima</li>
+    <li>Pavimentação e manutenção de vias em áreas de encosta</li>
+    <li>Implantação de sistemas de alerta e drenagem em fundos de vale</li>
+    <li>Revisão de obras de contenção de encostas e taludes</li>
+  </ul>
+  <p class="ep-eixo__orgaos"><strong>Órgãos envolvidos:</strong> SIURB, Subprefeitura Jaçanã/Tremembé, SVMA</p>
+</div>
+
+<div class="ep-eixo">
+  <p class="ep-eixo__num">Eixo 02 — Urgente</p>
+  <p class="ep-eixo__title">Saúde Pública e Atenção Básica</p>
+  <p class="ep-eixo__body">Demanda estrutural, fortemente marcada pela sobrecarga da UPA Jaçanã (mais de 18 mil atendimentos mensais em 2025) e por lacunas na cobertura da atenção básica, com longas filas e dificuldade de acesso a especialidades.</p>
+  <ul class="ep-eixo__demands">
+    <li>Ampliação e reforma de Unidades Básicas de Saúde (UBS)</li>
+    <li>Redução do tempo de espera para consultas com especialistas</li>
+    <li>Ampliação das equipes de Saúde da Família</li>
+    <li>Atendimento em saúde mental e apoio psicossocial</li>
+  </ul>
+  <p class="ep-eixo__orgaos"><strong>Órgãos envolvidos:</strong> Secretaria Municipal de Saúde (SMS), OSS parceiras, Coordenadoria Regional de Saúde Norte</p>
+</div>
+
+<div class="ep-eixo">
+  <p class="ep-eixo__num">Eixo 03 — Média prioridade</p>
+  <p class="ep-eixo__title">Mobilidade e Acessibilidade</p>
+  <p class="ep-eixo__body">A região apresenta limitações estruturais de mobilidade, com linhas de ônibus sobrecarregadas e ausência de alternativas de transporte ativo. Participantes relataram dificuldades de deslocamento especialmente para idosos e pessoas com deficiência.</p>
+  <ul class="ep-eixo__demands">
+    <li>Ampliação de frequência e cobertura de linhas de ônibus</li>
+    <li>Implantação de calçadas acessíveis e rampas em vias de alta circulação</li>
+    <li>Sinalização e equipamentos para pedestres idosos</li>
+  </ul>
+  <p class="ep-eixo__orgaos"><strong>Órgãos envolvidos:</strong> SPTrans, SMSP, Subprefeitura</p>
+</div>
+
+<div class="ep-eixo">
+  <p class="ep-eixo__num">Eixo 04 — Alta prioridade</p>
+  <p class="ep-eixo__title">Segurança Pública</p>
+  <p class="ep-eixo__body">Demanda de alta percepção subjetiva, com relatos de insegurança em áreas de baixa iluminação, praças e entornos escolares. Participantes destacaram a necessidade de integração entre poder público e comunidade.</p>
+  <ul class="ep-eixo__demands">
+    <li>Melhoria e ampliação da iluminação pública</li>
+    <li>Presença mais efetiva da Guarda Civil Metropolitana</li>
+    <li>Ações integradas de segurança em entornos de equipamentos públicos</li>
+  </ul>
+  <p class="ep-eixo__orgaos"><strong>Órgãos envolvidos:</strong> SMSU, GCM, SSP-SP (âmbito estadual)</p>
+</div>
+
+<div class="ep-eixo">
+  <p class="ep-eixo__num">Eixo 05 — Alta prioridade</p>
+  <p class="ep-eixo__title">Meio Ambiente, Saneamento e Resíduos</p>
+  <p class="ep-eixo__body">O bairro enfrenta problemas crônicos de descarte irregular de lixo, especialmente em margens de córregos e encostas. A presença do Parque da Cantareira não elimina a vulnerabilidade ambiental das áreas de baixada.</p>
+  <ul class="ep-eixo__demands">
+    <li>Ampliação da frequência de coleta de lixo em vias irregulares</li>
+    <li>Combate a pontos de descarte irregular (bota-foras)</li>
+    <li>Esgotamento sanitário em áreas de urbanização precária</li>
+  </ul>
+  <p class="ep-eixo__orgaos"><strong>Órgãos envolvidos:</strong> SVMA, AMLURB, Sabesp (estadual)</p>
+</div>
+
+<div class="ep-eixo">
+  <p class="ep-eixo__num">Eixo 06 — Média prioridade</p>
+  <p class="ep-eixo__title">Equipamentos Públicos, Cultura e Segurança Alimentar</p>
+  <p class="ep-eixo__body">Participantes destacaram a escassez de espaços de lazer, cultura e apoio alimentar no território, com demandas específicas voltadas a crianças, jovens e idosos.</p>
+  <ul class="ep-eixo__demands">
+    <li>Ampliação de atividades culturais, esportivas e de lazer no CEU</li>
+    <li>Criação ou fortalecimento de Restaurantes Populares e Bancos de Alimentos</li>
+    <li>Programas de apoio a idosos e crianças em situação de vulnerabilidade alimentar</li>
+  </ul>
+  <p class="ep-eixo__orgaos"><strong>Órgãos envolvidos:</strong> SMADS, SMC (Secretaria Municipal de Cultura), ABAST</p>
+</div>
+
+<hr>
+
+<!-- 6. PRIORIZAÇÃO -->
+<h1 id="s6" data-num="06">Síntese e Priorização das Demandas</h1>
+
+<p>Com base nas discussões registradas durante a oficina, é possível identificar uma hierarquização das demandas a partir de três critérios combinados: (a) recorrência territorial; (b) impacto direto na vida cotidiana; e (c) urgência percebida pela comunidade.</p>
+
+<div class="ep-prioridade">
+  <div class="ep-prioridade__header">
+    <span>#</span>
+    <span>Demanda</span>
+    <span>Eixo temático</span>
+    <span>Urgência</span>
+  </div>
+  <div class="ep-prioridade__row">
+    <span class="ep-prioridade__cell ep-prioridade__n">1</span>
+    <span class="ep-prioridade__cell">Drenagem e contenção de enchentes — Rio Cabuçu de Cima</span>
+    <span class="ep-prioridade__cell">Infraestrutura urbana</span>
+    <span class="ep-prioridade__cell"><span class="ep-badge-urgencia ep-badge-urgencia--urgente">Urgente</span></span>
+  </div>
+  <div class="ep-prioridade__row">
+    <span class="ep-prioridade__cell ep-prioridade__n">2</span>
+    <span class="ep-prioridade__cell">Ampliação e estruturação da rede de atenção básica à saúde</span>
+    <span class="ep-prioridade__cell">Saúde pública</span>
+    <span class="ep-prioridade__cell"><span class="ep-badge-urgencia ep-badge-urgencia--urgente">Urgente</span></span>
+  </div>
+  <div class="ep-prioridade__row">
+    <span class="ep-prioridade__cell ep-prioridade__n">3</span>
+    <span class="ep-prioridade__cell">Limpeza urbana, saneamento e combate a descarte irregular</span>
+    <span class="ep-prioridade__cell">Meio ambiente / saneamento</span>
+    <span class="ep-prioridade__cell"><span class="ep-badge-urgencia ep-badge-urgencia--alta">Alta</span></span>
+  </div>
+  <div class="ep-prioridade__row">
+    <span class="ep-prioridade__cell ep-prioridade__n">4</span>
+    <span class="ep-prioridade__cell">Segurança pública e iluminação</span>
+    <span class="ep-prioridade__cell">Segurança urbana</span>
+    <span class="ep-prioridade__cell"><span class="ep-badge-urgencia ep-badge-urgencia--alta">Alta</span></span>
+  </div>
+  <div class="ep-prioridade__row">
+    <span class="ep-prioridade__cell ep-prioridade__n">5</span>
+    <span class="ep-prioridade__cell">Mobilidade e acessibilidade (transporte e calçadas)</span>
+    <span class="ep-prioridade__cell">Mobilidade</span>
+    <span class="ep-prioridade__cell"><span class="ep-badge-urgencia ep-badge-urgencia--media">Média</span></span>
+  </div>
+  <div class="ep-prioridade__row">
+    <span class="ep-prioridade__cell ep-prioridade__n">6</span>
+    <span class="ep-prioridade__cell">Ampliação de equipamentos públicos, cultura e segurança alimentar</span>
+    <span class="ep-prioridade__cell">Assistência social / cultura</span>
+    <span class="ep-prioridade__cell"><span class="ep-badge-urgencia ep-badge-urgencia--media">Média</span></span>
+  </div>
+</div>
+
+<hr>
+
+<!-- 7. ATUAÇÃO PARLAMENTAR -->
+<h1 id="s7" data-num="07">Síntese para Atuação Parlamentar</h1>
+
+<p>As demandas identificadas podem ser organizadas em três horizontes de atuação legislativa e de fiscalização:</p>
+
+<div class="ep-horizonte">
+  <div class="ep-horizonte__card">
+    <p class="ep-horizonte__label">Curto prazo</p>
+    <p class="ep-horizonte__title">Manutenção e resposta imediata</p>
+    <ul class="ep-horizonte__list">
+      <li>Fiscalização das obras de drenagem do Rio Cabuçu e cobrança de prazos junto à SIURB</li>
+      <li>Indicação de melhorias de iluminação pública e manutenção viária</li>
+      <li>Solicitação de reforço de coleta de resíduos em vias irregulares</li>
+    </ul>
+  </div>
+  <div class="ep-horizonte__card ep-horizonte__card--medio">
+    <p class="ep-horizonte__label">Médio prazo</p>
+    <p class="ep-horizonte__title">Ampliação de serviços e infraestrutura</p>
+    <ul class="ep-horizonte__list">
+      <li>Emendas orçamentárias vinculadas à saúde: ampliação de equipes de ESF e novos equipamentos de atenção básica</li>
+      <li>Articulação com a SPTrans para revisão de linhas de ônibus na região</li>
+      <li>Apoio a projetos de urbanização e regularização fundiária em áreas de risco</li>
+    </ul>
+  </div>
+  <div class="ep-horizonte__card ep-horizonte__card--longo">
+    <p class="ep-horizonte__label">Estruturante</p>
+    <p class="ep-horizonte__title">Planejamento territorial de longo prazo</p>
+    <ul class="ep-horizonte__list">
+      <li>Revisão do Plano Diretor para proteção de áreas de várzea e encosta no distrito</li>
+      <li>Articulação com políticas estaduais de segurança hídrica e saneamento</li>
+      <li>Integração das demandas ao processo de elaboração do Plano Plurianual (PPA)</li>
+    </ul>
+  </div>
+</div>
+
+<div class="ep-callout ep-callout--alerta">
+  <strong>Alerta legislativo — Potencial de sub-representação.</strong> As demandas sistematizadas neste relatório refletem principalmente a perspectiva de lideranças organizadas. Parlamentares devem considerar que grupos em situação de maior vulnerabilidade — especialmente jovens, população em situação de rua e trabalhadores informais — podem ter demandas distintas não captadas nesta edição. Recomenda-se que edições subsequentes do Câmara na Rua no território incluam estratégias específicas de alcance a esses grupos.
+</div>
+
+<hr>
+
+<!-- 8. DINÂMICA -->
+<h1 id="s8" data-num="08">Análise da Dinâmica Participativa</h1>
+
+<p>A oficina reuniu 45 participantes e evidenciou alta capacidade de formulação coletiva, com articulação clara de demandas e boa disposição para trabalho em grupo. Foram utilizadas metodologias participativas de mapeamento e priorização, com resultados sistematizados em plenária.</p>
+
+<div class="ep-dois-col">
+  <div class="ep-col-card">
+    <p class="ep-col-card__title">Potencialidades observadas</p>
+    <ul class="ep-col-card__list">
+      <li>Alta capacidade de formulação coletiva</li>
+      <li>Presença de lideranças experientes</li>
+      <li>Engajamento consistente ao longo da atividade</li>
+      <li>Boa disposição para trabalho em grupo e escuta coletiva</li>
+    </ul>
+  </div>
+  <div class="ep-col-card ep-col-card--risco">
+    <p class="ep-col-card__title">Riscos e limitações</p>
+    <ul class="ep-col-card__list">
+      <li>Concentração de fala em atores mais organizados</li>
+      <li>Sub-representação de grupos vulneráveis</li>
+      <li>Risco de reprodução de agendas já institucionalizadas</li>
+      <li>Ausência de registro formal da plenária de priorização</li>
+    </ul>
+  </div>
+</div>
+
+<hr>
+
+<!-- 9. CONSIDERAÇÕES -->
+<h1 id="s9" data-num="09">Considerações Finais</h1>
+
+<p>A primeira Oficina de Participação Cidadã do projeto Câmara na Rua no CEU Jaçanã demonstrou o potencial do território para o engajamento cidadão qualificado. As demandas sistematizadas evidenciam necessidades estruturais acumuladas — enchentes, saúde, saneamento — que requerem resposta coordenada do Executivo e atenção fiscalizadora e legislativa do Parlamento municipal.</p>
+
+<blockquote>
+<p>O projeto cumpre sua função ao criar um espaço formal de escuta e organização de demandas territoriais. Para que esse potencial se traduza em transformação concreta, é indispensável garantir continuidade das atividades, diversificação do público e, sobretudo, a devolutiva institucional que dá sentido à participação cidadã.</p>
+</blockquote>
+
+<p><em>Documento produzido pela Escola do Parlamento com base nos registros da 1ª Oficina de Participação Cidadã do projeto Câmara na Rua, realizada em 21 de março de 2026 no CEU Jaçanã. São Paulo, março de 2026.</em></p>
+
+</div>
+</main>
+
+<footer class="ep-footer">
+  <div class="ep-footer__left">
+    <div class="ep-footer__logos">
+      <img class="ep-footer__logo-ep" src="logo_ep_branco.png" alt="Escola do Parlamento">
+      <div class="ep-footer__sep"></div>
+      <img class="ep-footer__logo-camara" src="logo_camara_branco.png" alt="Câmara Municipal de São Paulo">
+    </div>
+    <p class="ep-footer__tagline">Educação para a Cidadania</p>
+  </div>
+  <div class="ep-footer__right">
+    EP-CNR-2026-001<br>
+    Documento de uso institucional<br>
+    São Paulo, março de 2026
+  </div>
+</footer>
+
+</body>
+</html>
